@@ -28,7 +28,7 @@ jobs:
 
       - name: Build test image
         run: |
-          cd backend/
+          cd api/
           docker build . -t $API_IMAGE
 
   frontend-test:
@@ -45,6 +45,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./frontend
-          file: ./frontend/Dockerfile.prod
+          file: ./frontend/Dockerfile
           tags: ${{ env.CLIENT_IMAGE }}
           push: false
