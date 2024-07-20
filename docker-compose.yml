@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  client:
+    container_name: isa-client
+    image: ghcr.io/eburlingame/isa/isa-client:latest
+    ports:
+      - "3000:80"
+
+  api:
+    container_name: isa-api
+    image: ghcr.io/eburlingame/isa/isa-api:latest
+    hostname: api
+    ports:
+      - "3001:5000"
+
+    environment:
+      API_SERVER_PORT: "5000"
+      REDIS_HOST: "redis:6379"
+
+    depends_on:
+      - redis
+
+  redis:
+    container_name: redis
+    image: redis:5.0.3-alpine
+    command: redis-server
+    ports:
+      - 6379
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
