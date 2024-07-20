@@ -1,12 +1,14 @@
 # build environment
 FROM node:16-alpine3.14 as build
+
 WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
-ENV NODE_ENV production
+ENV PATH=/app/node_modules/.bin:$PATH
+ENV NODE_ENV=production
 COPY package.json ./
 RUN yarn install --frozen-lockfile
 RUN yarn global add react-scripts@3.4.1
 COPY . ./
+
 RUN yarn run build
 
 # production environment

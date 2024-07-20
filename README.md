@@ -1,4 +1,4 @@
-# Isa (Uno)
+# Isa: Online, multiplayer Uno game
 
 ## Local Development
 
